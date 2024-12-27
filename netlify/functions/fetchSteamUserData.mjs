@@ -1,7 +1,7 @@
-const steamApiKey = process.env.STEAM_API_KEY;
-
 export const handler = async (steamUserId) => {
-  const url = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=${steamApiKey}&steamid=${steamUserId}&format=json`;
+  const steamApiKey = process.env.STEAM_API_KEY;
+
+  const url = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=${steamApiKey}&steamid=${steamUserId}&format=json&include_appinfo=1`;
 
   try {
     const response = await fetch(url);
@@ -15,7 +15,7 @@ export const handler = async (steamUserId) => {
       appid: game.appid,
       name: game.name,
       playtime: game.playtime_forever,
-      img_logo_url: game.img_logo_url
+      //img_logo_url: game.img_logo_url
     }));
 
     return games;
