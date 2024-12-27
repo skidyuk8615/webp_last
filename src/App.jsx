@@ -10,7 +10,7 @@ const App = () => {
     setGames([]);
 
     try {
-      const response = await fetch("/.netlify/functions/fetchSteamUserData", {
+      const response = await fetch(`/.netlify/functions/fetchSteamUserData?steamUserId=${steamId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
