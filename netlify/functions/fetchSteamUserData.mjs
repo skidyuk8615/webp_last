@@ -1,6 +1,6 @@
 const steamApiKey = process.env.STEAM_API_KEY;
 
-export const fetchSteamUserData = async (steamUserId) => {
+export const handler = async (steamUserId) => {
   const url = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=${steamApiKey}&steamid=${steamUserId}&format=json`;
 
   try {
