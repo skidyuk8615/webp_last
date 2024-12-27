@@ -4,6 +4,7 @@ export const handler = async (steamUserId) => {
   const url = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=${steamApiKey}&steamid=${steamUserId}&format=json&include_appinfo=1`;
 
   try {
+    console.log('API Key:', process.env.API_KEY);
     const response = await fetch(url);
     const data = await response.json();
 
