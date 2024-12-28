@@ -14,12 +14,7 @@ export const handler = async (req) => {
       throw new Error('データを取得できませんでした');
     }
 
-    const games = data.response.games;
-
-    // プレイ時間でソートして、上位10個を抽出
-    const topGames = games.sort((a, b) => b.playtime_forever - a.playtime_forever).slice(0, 10);
-
-    const mappedGames = topGames.map((game) => ({
+    const games = data.response.games.map(game => ({
       appid: game.appid,
       name: game.name,
       playtime: game.playtime_forever,
@@ -28,7 +23,7 @@ export const handler = async (req) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify(mappedGames),
+      body: JSON.stringify(games),
     };
   } catch (error) {
     return {

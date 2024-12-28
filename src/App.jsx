@@ -8,19 +8,26 @@ export default function App() {
   const [games, setGames] = useState([]);
   const [error, setError] = useState("");
 
-  //修正
-  const fetchData = async () => {
-    try {
-      const response = await fetch(`your-server-url?steamUserId=${steamId}`);
-      const data = await response.json();
-      setGames(data.games);
-    } catch (error) {
-      console.error("Error fetching data:", error);
+  const handleClick = async () => {
+    if (!steamId) {
+      setError("Steam IDを入力してください");
+      return;
     }
-  };
 
-  const handleClick = () => {
-    fetchData();
+    try {
+      const response = await fetch(`/.netlify/functions/fetchSteamUserData?steamUserId=${steamId}`);
+
+      if (!response.ok) {
+        throw new Error("データの取得に失敗しました");
+      }
+
+      const data = await response.json();
+      setGames(data);
+
+      setError("");
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (
