@@ -20,8 +20,14 @@ export const handler = async (event) => {
       //img_logo_url: game.img_logo_url
     }));
 
-    return games;
+    return {
+      statusCode: 200, // 成功
+      body: JSON.stringify(games),
+    };
   } catch (error) {
-    throw error;
+    return {
+      statusCode: 500, // エラー
+      body: JSON.stringify({ error: error.message }),
+    };
   }
 };
