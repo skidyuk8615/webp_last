@@ -22,8 +22,14 @@ export const handler = async (req) => {
       //img_logo_url: game.img_logo_url
     }));
 
-    return new Response(JSON.stringify(games), { status: 200 });
+    return {
+      statusCode: 200, // 成功
+      body: JSON.stringify(games),
+    };
   } catch (error) {
-    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+    return {
+      statusCode: 500, // エラー
+      body: JSON.stringify({ error: error.message }),
+    };
   }
 };
