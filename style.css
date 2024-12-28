@@ -1,5 +1,13 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 .app-header {
-  background-color: #fef263;
-  padding: 1rem;
-  font-size: 1.5rem;
+  background-color: #87ceeb;
+  padding: 1px 15px;
+  font-size: 0.8rem;
+  height: 67px;
 }
