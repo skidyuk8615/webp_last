@@ -11,12 +11,9 @@ const App = () => {
 
     try {
       const response = await fetch(`/.netlify/functions/fetchSteamUserData?steamUserId=${steamId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ steamId }),
+        method: "GET",
       });
+
 
       if (!response.ok) {
         throw new Error("サーバーからのレスポンスが不正です");
