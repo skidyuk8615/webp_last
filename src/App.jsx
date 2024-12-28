@@ -8,6 +8,7 @@ export default function App() {
   const [games, setGames] = useState([]);
   const [error, setError] = useState("");
 
+  //修正
   const fetchData = async () => {
     try {
       const response = await fetch(`your-server-url?steamUserId=${steamId}`);
