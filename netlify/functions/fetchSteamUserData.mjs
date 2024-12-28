@@ -19,7 +19,7 @@ export const handler = async (req) => {
       appid: game.appid,
       name: game.name,
       playtime: game.playtime_forever,
-      //img_logo_url: game.img_logo_url
+      img_icon_url: game.img_icon_url
     }));
 
     return {
