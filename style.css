@@ -5,9 +5,20 @@ body {
   height: 100%;
 }
 
+body {
+  background: #faf5e8;
+}
+
 .app-header {
-  background-color: #87ceeb;
+  background-color: #a4d66b;
   padding: 1px 15px;
   font-size: 0.8rem;
   height: 67px;
+}
+
+.app-footer {
+  padding: 1px 15px;
+  font-size: 15px;
+  color: #9ca3af;
+  background: #1d1e22;
 }
