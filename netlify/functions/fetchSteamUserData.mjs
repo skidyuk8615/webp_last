@@ -1,6 +1,8 @@
-export const handler = async (event) => {
+export const handler = async (req) => {
   const steamApiKey = process.env.STEAM_API_KEY;
-  const { steamUserId } = event.queryStringParameters;
+
+  const params = new URL(req.rawUrl).searchParams;
+  const steamUserId = params.get("steamUserId");
 
   const url = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=${steamApiKey}&steamid=${steamUserId}&format=json&include_appinfo=1`;
 
