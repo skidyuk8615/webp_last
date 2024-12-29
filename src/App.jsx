@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import Header from './components/Header';
 import Footer from './components/Footer';
 import DisplayPieChart from './components/DisplayPieChart';
+import GameTable from './components/GameTable';
 
 export default function App() {
   const [steamId, setSteamId] = useState("");
@@ -37,6 +38,7 @@ export default function App() {
         </div>
 
         {games.length > 0 && <DisplayPieChart data={games} />}
+        {games.length > 0 && <GameTable games={games} />}
       </main>
       <Footer />
     </div>
