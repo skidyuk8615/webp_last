@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Button from "@mui/material/Button";
 import Header from './components/Header';
 import Footer from './components/Footer';
+import DisplayPieChart from './components/DisplayPieChart';
 
 export default function App() {
   const [steamId, setSteamId] = useState("");
@@ -9,24 +10,19 @@ export default function App() {
   const [error, setError] = useState("");
 
   const handleClick = async () => {
-    if (!steamId) {
-      setError("Steam IDを入力してください");
-      return;
-    }
-
     try {
       const response = await fetch(`/.netlify/functions/fetchSteamUserData?steamUserId=${steamId}`);
-
-      if (!response.ok) {
-        throw new Error("データの取得に失敗しました");
-      }
-
       const data = await response.json();
-      setGames(data);
-
-      setError("");
+      const sortedGames = data.sort((a, b) => b.playtime - a.playtime);
+      const topGames = sortedGames.slice(0, 10);
+      const mappedGames = topGames.map((game) => ({
+        appid: game.appid,
+        name: game.name,
+        playtime: game.playtime,
+      }));
+      setGames(mappedGames);
     } catch (error) {
-      setError(error.message);
+      console.error('Error fetching data:', error);
     }
   };
 
@@ -42,10 +38,12 @@ export default function App() {
             value={steamId}
             onChange={(e) => setSteamId(e.target.value)}
           />
-          <Button variant="contained" onClick={handleClick}>送信</Button>
-
-          {error && <p style={{ color: 'red' }}>{error}</p>}
+          <Button variant="contained" onClick={handleClick}>
+            送信
+          </Button>
         </div>
+
+        {games.length > 0 && <DisplayPieChart data={games} />}
       </main>
       <Footer />
     </div>
