@@ -19,3 +19,37 @@ body {
 .input-id {
   height: 30px;
 }
+
+.table-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+
+  /* 表の外枠 */
+}
+
+table {
+  width: 80%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+td img {
+  display: block;
+  margin: 0 auto;
+}
+
+th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
