@@ -1,4 +1,4 @@
-import { PieChart, Pie } from 'recharts';
+import { PieChart, Pie, Tooltip } from 'recharts';
 
 export default function DisplayPieChart({ data }) {
   const top7 = data.slice(0, 7);
@@ -6,12 +6,11 @@ export default function DisplayPieChart({ data }) {
 
   const otherPlaytime = otherGames.reduce((total, game) => total + game.playtime, 0);
 
-  // 新しい配色
   const gradientColors = [
     '#d74b2a',
     '#f0804b',
     '#f7b746',
-    '#f5c02e',  // 変更した色
+    '#f5c02e',
     '#91c453',
     '#55bfa6',
     '#51a7d1',
@@ -27,23 +26,25 @@ export default function DisplayPieChart({ data }) {
   ];
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <div>
-        <h2>ゲームプレイ時間</h2>
-        <PieChart width={1000} height={400}>
-          <Pie
-            data={chartData}
-            dataKey="playtime"
-            nameKey="name"
-            cx="50%"
-            cy="50%"
-            outerRadius={150}
-            startAngle={90}
-            endAngle={-270}
-            label={({ name }) => name}
-          />
-        </PieChart>
-      </div>
+    <div>
+      <h2>ゲームプレイ時間</h2>
+      <PieChart width={1000} height={400}>
+        <Pie
+          data={chartData}
+          dataKey="playtime"
+          nameKey="name"
+          cx="50%"
+          cy="50%"
+          outerRadius={150}
+          startAngle={90}
+          endAngle={-270}
+          label={({ name }) => name}
+        />
+        <Tooltip
+          formatter={(value) => `${value} 時間`}
+          labelFormatter={(name) => `${name}`}
+        />
+      </PieChart>
     </div>
   );
 };
