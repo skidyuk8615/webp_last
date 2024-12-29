@@ -25,6 +25,8 @@ export default function App() {
       <Header />
       <main>
         <div>
+          <h1>使い方</h1>
+          <p>下の入力欄にsteamIDを入力して送信ボタンを押すことで、そのsteamアカウントのゲーム別プレイ時間を表示できます</p>
           <input
             className="input-id"
             type="text"
