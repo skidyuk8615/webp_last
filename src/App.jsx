@@ -13,14 +13,8 @@ export default function App() {
     try {
       const response = await fetch(`/.netlify/functions/fetchSteamUserData?steamUserId=${steamId}`);
       const data = await response.json();
-      const sortedGames = data.sort((a, b) => b.playtime - a.playtime);
-      const topGames = sortedGames.slice(0, 10);
-      const mappedGames = topGames.map((game) => ({
-        appid: game.appid,
-        name: game.name,
-        playtime: game.playtime,
-      }));
-      setGames(mappedGames);
+      const topGames = data.sort((a, b) => b.playtime - a.playtime).slice(0, 10);
+      setGames(topGames);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
