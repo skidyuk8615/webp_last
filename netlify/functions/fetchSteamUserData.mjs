@@ -17,7 +17,7 @@ export const handler = async (req) => {
     const games = data.response.games.map(game => ({
       appid: game.appid,
       name: game.name,
-      playtime: game.playtime_forever,
+      playtime: game.playtime_forever / 60,
       img_icon_url: game.img_icon_url
     }));
 
