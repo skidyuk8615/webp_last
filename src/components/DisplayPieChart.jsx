@@ -3,8 +3,10 @@ import { PieChart, Pie, Tooltip } from 'recharts';
 export default function DisplayPieChart({ data }) {
   const top7 = data.slice(0, 7);
   const otherGames = data.slice(7);
+  const otherPlaytime = Math.floor(otherGames.reduce((total, game) => total + game.playtime, 0) * 100) / 100;
 
-  const otherPlaytime = otherGames.reduce((total, game) => total + game.playtime, 0);
+  const totalPlaytime = Math.floor((top7.reduce((total, game) => total + game.playtime, 0) + otherPlaytime) * 100) / 100;
+
 
   const gradientColors = [
     '#d74b2a',
@@ -27,7 +29,7 @@ export default function DisplayPieChart({ data }) {
 
   return (
     <div>
-      <h2>ゲームプレイ時間</h2>
+      <h2>総プレイ時間: {totalPlaytime} 時間</h2>
       <PieChart width={1000} height={400}>
         <Pie
           data={chartData}
