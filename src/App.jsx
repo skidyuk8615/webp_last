@@ -7,14 +7,13 @@ import DisplayPieChart from './components/DisplayPieChart';
 export default function App() {
   const [steamId, setSteamId] = useState("");
   const [games, setGames] = useState([]);
-  const [error, setError] = useState("");
 
   const handleClick = async () => {
     try {
       const response = await fetch(`/.netlify/functions/fetchSteamUserData?steamUserId=${steamId}`);
       const data = await response.json();
-      const topGames = data.sort((a, b) => b.playtime - a.playtime).slice(0, 10);
-      setGames(topGames);
+      const sortedGames = data.sort((a, b) => b.playtime - a.playtime);
+      setGames(sortedGames);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
