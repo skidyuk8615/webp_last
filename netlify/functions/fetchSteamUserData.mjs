@@ -17,7 +17,7 @@ export const handler = async (req) => {
     const games = data.response.games.map(game => ({
       appid: game.appid,
       name: game.name,
-      playtime: game.playtime_forever / 60,
+      playtime: Math.floor(game.playtime_forever / 60 * 10) / 10, //m->hに単位変換して小数点第二位を切り捨て
       img_icon_url: game.img_icon_url
     }));
 
